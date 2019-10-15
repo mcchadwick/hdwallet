@@ -149,11 +149,12 @@ export function bitcoinTests (get: () => { wallet: HDWallet, info: HDWalletInfo 
       })
     }, TIMEOUT)
 
-    test('btcSignTx() - p2pkh', async () => {
+    // TODO: fix this test - dv
+    test.only('btcSignTx() - p2pkh', async () => {
       if (!wallet) return
-      if (isLedger(wallet)) return // FIXME: Expected failure
+      // if (isLedger(wallet)) return // FIXME: Expected failure
       let inputs = [{
-        addressNList: bip32ToAddressNList("m/0"),
+        addressNList: bip32ToAddressNList("m/44"),
         scriptType: BTCInputScriptType.SpendAddress,
         amount: String(390000),
         vout: 0,

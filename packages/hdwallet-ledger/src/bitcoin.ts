@@ -141,30 +141,37 @@ export async function btcSignTx (wallet: BTCWallet, transport: LedgerTransport, 
   })
 
   let unsignedHex = txBuilder.buildIncomplete().toHex()
-  let splitTx = await transport.call('Btc', 'splitTransaction', unsignedHex)
-  let outputScriptHex = await transport.call('Btc', 'serializeTransactionOutputs', splitTx.payload)
-  outputScriptHex = outputScriptHex.payload.toString('hex')
-
-  for(let i = 0; i < msg.inputs.length; i++){
-    if(msg.inputs[i].scriptType === BTCInputScriptType.SpendWitness || msg.inputs[i].scriptType === BTCInputScriptType.SpendP2SHWitness) segwit = true
-    let path = addressNListToBIP32(msg.inputs[i].addressNList)
-    let vout = msg.inputs[i].vout
-
-    let tx = await transport.call('Btc', 'splitTransaction', msg.inputs[i].hex, networksUtil[slip44].isSegwitSupported, networksUtil[slip44].areTransactionTimestamped)
-
-    indexes.push(vout)
-    txs.push(tx.payload)
-    paths.push(path)
+  console.log({ unsignedHex })
+  try {
+    let splitTx = await transport.call('Btc', 'splitTransaction', unsignedHex)
+    console.log({ splitTx })
+  } catch (e) {
+    console.log({ error: e})
   }
-  const inputs = zip(txs, indexes);
-  const additionals = msg.coin === 'BitcoinCash' ? ['abc'] : []
+  // let outputScriptHex = await transport.call('Btc', 'serializeTransactionOutputs', splitTx.payload)
+  // console.log({ outputScriptHex })
+  // outputScriptHex = outputScriptHex.payload.toString('hex')
+  //
+  // for(let i = 0; i < msg.inputs.length; i++){
+  //   if(msg.inputs[i].scriptType === BTCInputScriptType.SpendWitness || msg.inputs[i].scriptType === BTCInputScriptType.SpendP2SHWitness) segwit = true
+  //   let path = addressNListToBIP32(msg.inputs[i].addressNList)
+  //   let vout = msg.inputs[i].vout
+  //
+  //   let tx = await transport.call('Btc', 'splitTransaction', msg.inputs[i].hex, networksUtil[slip44].isSegwitSupported, networksUtil[slip44].areTransactionTimestamped)
+  //   console.log({ tx })
+  //   indexes.push(vout)
+  //   txs.push(tx.payload)
+  //   paths.push(path)
+  // }
+  // const inputs = zip(txs, indexes);
+  // const additionals = msg.coin === 'BitcoinCash' ? ['abc'] : []
 
   //sign createPaymentTransaction
-  let signedTx = await transport.call('Btc', 'createPaymentTransactionNew', inputs, paths, undefined, outputScriptHex, null, networksUtil[slip44].sigHash, segwit, undefined, additionals)
-  handleError(transport, signedTx, 'Could not sign transaction with device')
+  // let signedTx = await transport.call('Btc', 'createPaymentTransactionNew', inputs, paths, undefined, outputScriptHex, null, networksUtil[slip44].sigHash, segwit, undefined, additionals)
+  // handleError(transport, signedTx, 'Could not sign transaction with device')
 
   return {
-    serializedTx: signedTx.payload,
+    serializedTx: "",
     signatures:[]
   }
 }

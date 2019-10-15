@@ -535,12 +535,15 @@ $btcSign.on('click', async (e) => {
   e.preventDefault()
   if (!wallet) { $btcResults.val("No wallet?"); return}
   if (supportsBTC(wallet)) {
+    console.log({ bip32ToAddressNList: bip32ToAddressNList("m/44'/0'/0'/0/0")})
+    console.log({ 'BTCInputScriptType.SpendAddress': BTCInputScriptType.SpendAddress})
     let res = await wallet.btcSignMessage({
       addressNList: bip32ToAddressNList("m/44'/0'/0'/0/0"),
       coin: 'Bitcoin',
       scriptType: BTCInputScriptType.SpendAddress,
       message: "Hello World"
     })
+    console.log({ res })
     $btcResults.val(res.address + ' ' + res.signature)
   } else {
     let label = await wallet.getLabel()
