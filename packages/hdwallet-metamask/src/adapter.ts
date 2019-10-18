@@ -18,14 +18,12 @@ export class MetamaskAdapter {
   /// wallet id to remove from the keyring when the active wallet changes
   currentDeviceId: string
 
-  private constructor (keyring: Keyring, args: { portis?: MetamaskWallet, portisAppId?: string }) {
-    this.portis = args.portis
-    this.portisAppId = args.portisAppId
+  private constructor (keyring: Keyring) {
     this.keyring = keyring
   }
 
   public static useKeyring (keyring: Keyring, args: { portis?: MetamaskWallet, portisAppId?: string }) {
-    return new MetamaskAdapter(keyring, args)
+    return new MetamaskAdapter(keyring)
   }
 
   public async initialize (): Promise<number> {
@@ -33,6 +31,6 @@ export class MetamaskAdapter {
   }
 
   public async pairDevice (): Promise<HDWallet> {
-    return new MetamaskHDWallet('someethval')
+    return new MetamaskHDWallet('ethereum')
   }
 }
