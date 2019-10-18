@@ -1,0 +1,20 @@
+{
+  "name": "@shapeshiftoss/hdwallet-metamask",
+  "version": "0.1.0",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/index.js",
+  "source": "src/index.ts",
+  "umd:main": "dist/index.umd.js",
+  "module": "dist/index.m.js",
+  "scripts": {
+    "build": "microbundle --target=web --name=metamask",
+    "clean": "rm -rf dist .rts2_*",
+    "dev": "microbundle watch --target=web --name=metamask --compress=false",
+    "prepublishOnly": "yarn clean && yarn build"
+  },
+  "dependencies": {
+  }
+}
