@@ -16,5 +16,6 @@
     "prepublishOnly": "yarn clean && yarn build"
   },
   "dependencies": {
+    "eventemitter2": "^5.0.1"
   }
 }

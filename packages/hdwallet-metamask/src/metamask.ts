@@ -65,7 +65,7 @@ function describeETHPath (path: BIP32Path): PathDescription {
   }
 }
 
-class MetaMaskTransport extends Transport {
+class MetamaskTransport extends Transport {
   public getDeviceID() {
     return 'metamask:0'
   }
@@ -76,22 +76,22 @@ class MetaMaskTransport extends Transport {
 
 }
 
-export class MetaMaskHDWallet implements HDWallet, ETHWallet {
+export class MetamaskHDWallet implements HDWallet, ETHWallet {
   _supportsETH: boolean = true
   _supportsETHInfo: boolean = true
   _supportsBTCInfo: boolean = false
   _supportsBTC: boolean = false
   _supportsDebugLink: boolean = false
-  _isMetaMask: boolean = true
+  _isMetamask: boolean = true
 
-  transport = new MetaMaskTransport(new Keyring())
+  transport = new MetamaskTransport(new Keyring())
 
-  info: MetaMaskHDWalletInfo & HDWalletInfo
+  info: MetamaskHDWalletInfo & HDWalletInfo
   ethereum: any
 
   constructor(ethereum) {
     this.ethereum = ethereum
-    this.info = new MetaMaskHDWalletInfo()
+    this.info = new MetamaskHDWalletInfo()
   }
 
   public async isLocked(): Promise<boolean> {
@@ -250,12 +250,12 @@ export class MetaMaskHDWallet implements HDWallet, ETHWallet {
 }
 
 
-export class MetaMaskHDWalletInfo implements HDWalletInfo, ETHWalletInfo {
+export class MetamaskHDWalletInfo implements HDWalletInfo, ETHWalletInfo {
   _supportsBTCInfo: boolean = false
   _supportsETHInfo: boolean = true
 
   public getVendor (): string {
-    return "MetaMask"
+    return "Metamask"
   }
 
   public async ethSupportsNetwork (chainId: number = 1): Promise<boolean> {
@@ -276,7 +276,7 @@ export class MetaMaskHDWalletInfo implements HDWalletInfo, ETHWalletInfo {
       addressNList: [ 0x80000000 + 44, 0x80000000 + slip44ByCoin(msg.coin), 0x80000000 + msg.accountIdx, 0, 0 ],
       hardenedPath: [ 0x80000000 + 44, 0x80000000 + slip44ByCoin(msg.coin), 0x80000000 + msg.accountIdx ],
       relPath: [ 0, 0 ],
-      description: "MetaMask"
+      description: "Metamask"
     }]
   }
 
