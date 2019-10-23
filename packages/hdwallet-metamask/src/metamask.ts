@@ -65,7 +65,7 @@ function describeETHPath (path: BIP32Path): PathDescription {
   }
 }
 
-class MetamaskTransport extends Transport {
+class MetaMaskTransport extends Transport {
   public getDeviceID() {
     return 'metamask:0'
   }
@@ -76,22 +76,25 @@ class MetamaskTransport extends Transport {
 
 }
 
-export class MetamaskHDWallet implements HDWallet, ETHWallet {
+export class MetaMaskHDWallet implements HDWallet, ETHWallet {
   _supportsETH: boolean = true
   _supportsETHInfo: boolean = true
   _supportsBTCInfo: boolean = false
   _supportsBTC: boolean = false
   _supportsDebugLink: boolean = false
-  _isMetamask: boolean = true
+  _isMetaMask: boolean = true
 
-  transport = new MetamaskTransport(new Keyring())
+  transport = new MetaMaskTransport(new Keyring())
 
-  info: MetamaskHDWalletInfo & HDWalletInfo
+  info: MetaMaskHDWalletInfo & HDWalletInfo
   ethereum: any
+  accounts: string[]
 
   constructor(ethereum) {
+    console.log('runnin with the devil')
     this.ethereum = ethereum
-    this.info = new MetamaskHDWalletInfo()
+    this.info = new MetaMaskHDWalletInfo()
+    this.accounts = []
   }
 
   public async isLocked(): Promise<boolean> {
@@ -99,21 +102,29 @@ export class MetamaskHDWallet implements HDWallet, ETHWallet {
   }
 
   public getVendor(): string {
-    return "Portis"
+    return "MetaMask"
   }
 
   public getModel(): Promise<string> {
-    return Promise.resolve('portis')
+    return Promise.resolve('MetaMask')
   }
 
   public getLabel(): Promise<string> {
-    return Promise.resolve('Portis')
+    return Promise.resolve('MetaMask')
   }
 
-  public initialize(): Promise<any> {
-    // no means to reset the state of the Portis widget
-    // while it's in the middle of execution
-    return Promise.resolve()
+  public async initialize(): Promise<any> {
+    // TODO should this be where enable() is called?
+    try {
+      const accounts = await this.ethereum.enable()
+      console.log({ accounts })
+      this.accounts = accounts
+    } catch (err) {
+      console.log('errrrrr')
+      if(err === 'User rejected provider access') {
+        console.log('rejected access')
+      }
+    }
   }
 
   public async hasOnDevicePinEntry(): Promise<boolean> {
@@ -221,7 +232,7 @@ export class MetamaskHDWallet implements HDWallet, ETHWallet {
   }
 
   public async getPublicKeys(msg: GetPublicKey[]): Promise<PublicKey[]> {
-    throw new Error('not implemented')
+    throw new Error('operation unsupported by vendor')
   }
 
   public async ethSignTx (msg: ETHSignTx): Promise<ETHSignedTx> {
@@ -237,11 +248,13 @@ export class MetamaskHDWallet implements HDWallet, ETHWallet {
   }
 
   public async ethGetAddress (msg: ETHGetAddress): Promise<string> {
-    throw new Error('not implemented')
+    return Promise.resolve(this.accounts[0])
   }
 
   public async getDeviceID(): Promise<string> {
-    throw new Error('not implemented')
+    const address = this.accounts[0]
+    if (!address) return null
+    return Promise.resolve('metamask:' + address)
   }
 
   public async getFirmwareVersion(): Promise<string> {
@@ -250,12 +263,12 @@ export class MetamaskHDWallet implements HDWallet, ETHWallet {
 }
 
 
-export class MetamaskHDWalletInfo implements HDWalletInfo, ETHWalletInfo {
+export class MetaMaskHDWalletInfo implements HDWalletInfo, ETHWalletInfo {
   _supportsBTCInfo: boolean = false
   _supportsETHInfo: boolean = true
 
   public getVendor (): string {
-    return "Metamask"
+    return "MetaMask"
   }
 
   public async ethSupportsNetwork (chainId: number = 1): Promise<boolean> {
@@ -276,7 +289,7 @@ export class MetamaskHDWalletInfo implements HDWalletInfo, ETHWalletInfo {
       addressNList: [ 0x80000000 + 44, 0x80000000 + slip44ByCoin(msg.coin), 0x80000000 + msg.accountIdx, 0, 0 ],
       hardenedPath: [ 0x80000000 + 44, 0x80000000 + slip44ByCoin(msg.coin), 0x80000000 + msg.accountIdx ],
       relPath: [ 0, 0 ],
-      description: "Metamask"
+      description: "MetaMask"
     }]
   }
 

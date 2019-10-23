@@ -17,6 +17,7 @@ import { TCPKeepKeyAdapter } from '@shapeshiftoss/hdwallet-keepkey-tcp'
 import { TrezorAdapter } from '@shapeshiftoss/hdwallet-trezor-connect'
 import { WebUSBLedgerAdapter } from '@shapeshiftoss/hdwallet-ledger-webusb'
 import { PortisAdapter } from '@shapeshiftoss/hdwallet-portis'
+import { MetaMaskAdapter } from '@shapeshiftoss/hdwallet-metamask'
 
 import {
   BTCInputScriptType,
@@ -40,6 +41,7 @@ const portisAppId = 'ff763d3d-9e34-45a1-81d1-caa39b9c64f9'
 const keepkeyAdapter = WebUSBKeepKeyAdapter.useKeyring(keyring)
 const kkemuAdapter = TCPKeepKeyAdapter.useKeyring(keyring)
 const portisAdapter = PortisAdapter.useKeyring(keyring, { portisAppId })
+const metamaskAdapter = MetaMaskAdapter.useKeyring(keyring)
 
 const log = debug.default('hdwallet')
 
@@ -73,6 +75,7 @@ const $trezor = $('#trezor')
 const $ledger = $('#ledger')
 const $portis = $('#portis')
 const $keyring = $('#keyring')
+const $metamask = $('#metamask')
 
 $keepkey.on('click', async (e) => {
   e.preventDefault()
@@ -117,6 +120,18 @@ $portis.on('click',  async (e) => {
     console.error(e)
   }
   $('#keyring select').val(deviceId)
+})
+
+
+$metamask.on('click', async (e) => {
+  e.preventDefault()
+  console.log('calling pairDevice')
+  wallet = await metamaskAdapter.pairDevice()
+  console.log({ wallet })
+  let deviceId = await wallet.getDeviceID()
+  window['wallet'] = wallet
+  $('#keyring select').val(deviceId)
+
 })
 
 async function deviceConnected (deviceId) {
