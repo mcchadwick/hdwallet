@@ -8,7 +8,7 @@ import {
   Keyring,
   HDWalletInfo,
   BTCInputScriptType,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 import {
   create as createTrezor,
   TrezorConnectResponse,
@@ -16,7 +16,7 @@ import {
   TrezorHDWallet,
   isTrezor,
   info,
-} from "@shapeshiftoss/hdwallet-trezor";
+} from "@mcchadwick/hdwallet-trezor";
 
 export class MockTransport extends TrezorTransport {
   memoized = new Map();

@@ -41,7 +41,7 @@ import {
   addressNListToBIP32,
   hardenedPath,
   relativePath,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 import { handleError } from "./utils";
 import * as Btc from "./bitcoin";
 import * as Eth from "./ethereum";

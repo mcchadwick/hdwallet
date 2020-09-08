@@ -1,10 +1,10 @@
-import * as core from "@shapeshiftoss/hdwallet-core";
+import * as core from "@mcchadwick/hdwallet-core";
 import {
   info,
   isNative,
   NativeAdapter,
   NativeHDWallet,
-} from "@shapeshiftoss/hdwallet-native";
+} from "@mcchadwick/hdwallet-native";
 
 const mnemonic = "all all all all all all all all all all all all";
 const deviceId = "native-test";

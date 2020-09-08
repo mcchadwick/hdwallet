@@ -3,14 +3,14 @@ import {
   ETHWallet,
   supportsETH,
   HDWalletInfo,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 import {
   PortisAdapter,
   PortisHDWallet,
   isPortis,
   info,
   create,
-} from "@shapeshiftoss/hdwallet-portis";
+} from "@mcchadwick/hdwallet-portis";
 
 export function name(): string {
   return "Portis";

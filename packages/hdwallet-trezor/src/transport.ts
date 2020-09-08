@@ -1,4 +1,4 @@
-import { Transport, Keyring } from "@shapeshiftoss/hdwallet-core";
+import { Transport, Keyring } from "@mcchadwick/hdwallet-core";
 
 export interface TrezorConnectResponse {
   success: boolean;

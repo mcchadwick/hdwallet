@@ -8,7 +8,7 @@ import {
   HDWalletInfo,
   BTCInputScriptType,
   bip32ToAddressNList,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 import {
   create as createLedger,
   LedgerTransport,
@@ -16,7 +16,7 @@ import {
   LedgerResponse,
   isLedger,
   info,
-} from "@shapeshiftoss/hdwallet-ledger";
+} from "@mcchadwick/hdwallet-ledger";
 
 export class MockTransport extends LedgerTransport {
   memoized = new Map();

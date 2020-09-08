@@ -4,12 +4,12 @@ import {
   Keyring,
   HDWalletErrorType,
   ActionCancelled,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 import {
   TrezorHDWallet,
   TrezorTransport,
   TrezorConnectResponse,
-} from "@shapeshiftoss/hdwallet-trezor";
+} from "@mcchadwick/hdwallet-trezor";
 import TrezorConnect, { DEVICE_EVENT, UI_EVENT } from "trezor-connect";
 
 export const POPUP = true;

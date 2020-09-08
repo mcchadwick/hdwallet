@@ -1,7 +1,7 @@
 import {
   BTCInputScriptType,
   BTCOutputScriptType,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 
 import {
   InputScriptType,

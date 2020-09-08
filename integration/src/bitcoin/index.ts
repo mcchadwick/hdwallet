@@ -1,4 +1,4 @@
-import { HDWallet, HDWalletInfo } from "@shapeshiftoss/hdwallet-core";
+import { HDWallet, HDWalletInfo } from "@mcchadwick/hdwallet-core";
 
 import { bitcoinTests } from "./bitcoin";
 import { testnetTests } from "./testnet";

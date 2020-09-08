@@ -2,7 +2,7 @@ import {
   ActionCancelled,
   DeviceDisconnected,
   PopupClosedError,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 
 import { TrezorTransport } from "./transport";
 

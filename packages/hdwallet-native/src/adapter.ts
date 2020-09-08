@@ -1,4 +1,4 @@
-import * as core from "@shapeshiftoss/hdwallet-core";
+import * as core from "@mcchadwick/hdwallet-core";
 import { create } from "./native";
 
 type NativeAdapterArgs = {

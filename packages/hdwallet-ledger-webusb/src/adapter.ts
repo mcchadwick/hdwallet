@@ -1,5 +1,5 @@
-import { create as createLedger } from "@shapeshiftoss/hdwallet-ledger";
-import { Events, Keyring, HDWallet } from "@shapeshiftoss/hdwallet-core";
+import { create as createLedger } from "@mcchadwick/hdwallet-ledger";
+import { Events, Keyring, HDWallet } from "@mcchadwick/hdwallet-core";
 import {
   LedgerWebUsbTransport,
   getFirstLedgerDevice,

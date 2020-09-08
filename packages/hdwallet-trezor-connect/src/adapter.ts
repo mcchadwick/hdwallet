@@ -3,11 +3,11 @@ import {
   HDWallet,
   Events,
   PopupClosedError,
-} from "@shapeshiftoss/hdwallet-core";
+} from "@mcchadwick/hdwallet-core";
 import {
   create as createTrezor,
   TrezorHDWallet,
-} from "@shapeshiftoss/hdwallet-trezor";
+} from "@mcchadwick/hdwallet-trezor";
 import { TrezorConnectTransport, POPUP, TrezorDevice } from "./transport";
 
 import TrezorConnect, {
