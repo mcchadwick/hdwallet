@@ -7,10 +7,13 @@ import { MixinNativeBTCWallet, MixinNativeBTCWalletInfo } from "./bitcoin";
 import { MixinNativeETHWalletInfo, MixinNativeETHWallet } from "./ethereum";
 import { MixinNativeCosmosWalletInfo, MixinNativeCosmosWallet } from "./cosmos";
 import { MixinNativeBinanceWalletInfo, MixinNativeBinanceWallet } from "./binance";
+import { MixinNativeFioWalletInfo, MixinNativeFioWallet } from "./fio";
 
 class NativeHDWalletInfo
   extends MixinNativeBTCWalletInfo(
-    MixinNativeETHWalletInfo(MixinNativeCosmosWalletInfo(MixinNativeBinanceWalletInfo(class Base {})))
+    MixinNativeETHWalletInfo(
+      MixinNativeCosmosWalletInfo(MixinNativeBinanceWalletInfo(MixinNativeFioWalletInfo(class Base {})))
+    )
   )
   implements core.HDWalletInfo {
   _supportsBTCInfo: boolean = true;
@@ -19,6 +22,7 @@ class NativeHDWalletInfo
   _supportsBinanceInfo: boolean = true;
   _supportsRippleInfo: boolean = false;
   _supportsEosInfo: boolean = false;
+  _supportsFioInfo: boolean = true;
 
   getVendor(): string {
     return "Native";
@@ -69,15 +73,16 @@ class NativeHDWalletInfo
 
 export class NativeHDWallet
   extends MixinNativeBTCWallet(
-    MixinNativeETHWallet(MixinNativeCosmosWallet(MixinNativeBinanceWallet(NativeHDWalletInfo)))
+    MixinNativeETHWallet(MixinNativeCosmosWallet(MixinNativeBinanceWallet(MixinNativeFioWallet(NativeHDWalletInfo))))
   )
-  implements core.HDWallet, core.BTCWallet, core.ETHWallet, core.CosmosWallet {
+  implements core.HDWallet, core.BTCWallet, core.ETHWallet, core.CosmosWallet, core.FioWallet {
   _supportsBTC = true;
   _supportsETH = true;
   _supportsCosmos = true;
   _supportsBinance = true;
   _supportsRipple = false;
   _supportsEos = false;
+  _supportsFio = true;
   _supportsDebugLink = false;
   _isNative = true;
 
@@ -144,6 +149,7 @@ export class NativeHDWallet
     super.ethInitializeWallet("0x" + seed.toString("hex"));
     super.cosmosInitializeWallet(this.#mnemonic);
     await super.binanceInitializeWallet(this.#mnemonic);
+    super.fioInitializeWallet(this.#mnemonic);
 
     this.#initialized = true;
   }

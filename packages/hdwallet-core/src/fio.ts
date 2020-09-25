@@ -7,6 +7,13 @@ export interface FioGetPublicKey {
   address?: string;
 }
 
+export interface FioGetAddress {
+  addressNList: BIP32Path;
+  showDisplay?: boolean;
+  /** Optional. Required for showDisplay == true. */
+  address?: string;
+}
+
 export interface FioGetAccountPaths {
   accountIdx: number;
 }
@@ -79,5 +86,5 @@ export interface FioWallet extends FioWalletInfo {
   _supportsFio: boolean;
 
   fioGetPublicKey(msg: FioGetPublicKey): Promise<string>;
-  fioSignTx(msg: FioSignTx): Promise<FioSignedTx>;
+  fioSignTx(msg: FioTx): Promise<FioSignedTx>;
 }

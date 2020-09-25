@@ -33,15 +33,83 @@ export function fioTests(get: () => { wallet: HDWallet; info: HDWalletInfo }): v
       });
     }, TIMEOUT);
 
-    test("fioGetPublicKey()", async () => {
-      if (!wallet) return;
-      expect(
-        await wallet.fioGetPublicKey({
+    test(
+      "fioGetAddress()",
+      async () => {
+        if (!wallet) return;
+        expect(
+          await wallet.fioGetAddress({
+            addressNList: bip32ToAddressNList("m/44'/235'/0'/0/0"),
+            showDisplay: false,
+          })
+        ).toEqual("FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");
+      },
+      TIMEOUT
+    );
+
+    /*** KK TESTS ***/
+
+    test(
+      "fioGetAccountPaths()",
+      () => {
+        if (!wallet) return;
+        let paths = wallet.fioGetAccountPaths({ accountIdx: 0 });
+        expect(paths.length > 0).toBe(true);
+        expect(paths[0].addressNList[0] > 0x80000000).toBe(true);
+        paths.forEach((path) => {
+          let curAddr = path.addressNList.join();
+          let nextAddr = wallet.fioNextAccountPath(path).addressNList.join();
+          expect(nextAddr === undefined || nextAddr !== curAddr).toBeTruthy();
+        });
+      },
+      TIMEOUT
+    );
+
+    test(
+      "fioGetPublicKey()",
+      async () => {
+        if (!wallet) return;
+        expect(
+          await wallet.fioGetPublicKey({
+            addressNList: bip32ToAddressNList("m/44'/235'/0'/0/0"),
+            showDisplay: false,
+            kind: FioPublicKeyKind.FIO,
+          })
+        ).toEqual("FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");
+      },
+      TIMEOUT
+    );
+
+    test(
+      "kk integration fioSignTx()",
+      async () => {
+        if (!wallet) return;
+        let txData = tx01_unsigned as any;
+        let res = await wallet.fioSignTx({
           addressNList: bip32ToAddressNList("m/44'/235'/0'/0/0"),
-          showDisplay: false,
-          kind: FioPublicKeyKind.FIO,
-        })
-      ).toEqual("FIO5kJKNHwctcfUM5XZyiWSqSTM5HTzznJP9F3ZdbhaQAHEVq575o");
-    });
+          chain_id: txData.chain_id as string,
+          tx: txData.transaction as FioTx,
+        });
+        expect(res.signature).toEqual(31);
+        expect(res.serialized).toEqual("");
+      },
+      TIMEOUT
+    );
+
+    test(
+      "confirmed on chain fioSignTx()",
+      async () => {
+        if (!wallet) return;
+        let txData = tx02_unsigned as any;
+        let res = await wallet.fioSignTx({
+          addressNList: bip32ToAddressNList("m/44'/235'/0'/0/0"),
+          chain_id: txData.chain_id as string,
+          tx: txData.transaction as FioTx,
+        });
+        expect(res.signature).toEqual(31);
+        expect(res.serialized).toEqual("");
+      },
+      TIMEOUT
+    );
   });
 }

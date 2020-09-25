@@ -1,7 +1,5 @@
 import * as core from "@mcchadwick/hdwallet-core";
-
 const fio = require("@fioprotocol/fiosdk");
-
 const fetch = require("node-fetch");
 
 const fetchJson = async (uri, opts = {}) => {
@@ -24,7 +22,7 @@ export function MixinNativeFioWalletInfo<TBase extends core.Constructor>(Base: T
       return false;
     }
 
-    fioGetAccountPaths(msg: any): Array<core.FioAccountPath> {
+    fioGetAccountPaths(msg: core.FioGetAccountPaths): Array<core.FioAccountPath> {
       return [
         {
           addressNList: [0x80000000 + 44, 0x80000000 + 235, 0x80000000 + msg.accountIdx, 0, 0],
@@ -51,16 +49,13 @@ export function MixinNativeFioWallet<TBase extends core.Constructor>(Base: TBase
 
     fioInitializeWallet(seed: string): void {
       this.#seed = seed;
-      this.#privateKey = fio.FIOSDK.createPrivateKeyMnemonic(this.#seed).fioKey;
-      this.#publicKey = fio.FIOSDK.derivedPublicKey(this.#privateKey);
-      this.#fioSdk = new fio.FIOSDK(this.#privateKey, this.#publicKey, this.baseUrl, fetchJson);
     }
 
-    async fioGetAddress(msg: any): Promise<string> {
-      if (!this.#publicKey || !this.#privateKey) {
-        // Throw error. fioInitializeWallet has not been called.
-        this.fioInitializeWallet(this.#seed);
-      }
+    async fioGetAddress(msg: core.FioGetAddress): Promise<string> {
+      const path = core.addressNListToBIP32(msg.addressNList);
+      this.#privateKey = fio.FIOSDK.createPrivateKeyMnemonic(this.#seed, path).fioKey;
+      this.#publicKey = fio.FIOSDK.derivedPublicKey(this.#privateKey);
+      this.#fioSdk = new fio.FIOSDK(this.#privateKey, this.#publicKey, this.baseUrl, fetchJson);
       return this.#publicKey;
     }
 

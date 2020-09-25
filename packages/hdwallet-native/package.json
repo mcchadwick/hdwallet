@@ -16,7 +16,7 @@
   "dependencies": {
     "@fioprotocol/fiojs": "^1.0.1",
     "@fioprotocol/fiosdk": "latest",
-    "@mcchadwick/fiosdk": "^1.1.3",
+    "@mcchadwick/fiosdk": "^1.1.4",
     "@mcchadwick/hdwallet-core": "^1.2.0",
     "bchaddrjs": "^0.4.9",
     "bip32": "^2.0.5",
