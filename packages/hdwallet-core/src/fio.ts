@@ -1,12 +1,4 @@
 import { BIP32Path } from "./wallet";
-
-export interface FioGetPublicKey {
-  addressNList: BIP32Path;
-  showDisplay?: boolean;
-  /** Optional. Required for showDisplay == true. */
-  address?: string;
-}
-
 export interface FioGetAddress {
   addressNList: BIP32Path;
   showDisplay?: boolean;
@@ -32,18 +24,11 @@ export namespace Fio {
     permission?: string;
   }
 
-  export interface FioPublicAddress {
-    chain_code?: string;
-    token_code?: string;
-    public_address?: string;
-  }
 
   export interface FioTxActionData {
-    fio_address?: string;
-    public_addresses: Array<Fio.FioPublicAddress>;
-    max_fee?: number;
     tpid?: string;
     actor?: string;
+    [x: string]: any;
   }
 
   /* add action acks here as they are added to the wallet */
@@ -55,7 +40,7 @@ export namespace Fio {
   }
 }
 
-export interface FioTx {
+export interface FioSignTx {
   expiration?: string;
   ref_block_num?: number;
   ref_block_prefix?: number;
@@ -84,7 +69,6 @@ export interface FioWalletInfo {
 
 export interface FioWallet extends FioWalletInfo {
   _supportsFio: boolean;
-
-  fioGetPublicKey(msg: FioGetPublicKey): Promise<string>;
-  fioSignTx(msg: FioTx): Promise<FioSignedTx>;
+  fioGetAddress(msg: FioGetAddress): Promise<string>;
+  fioSignTx(msg: FioSignTx): Promise<FioSignedTx>;
 }
