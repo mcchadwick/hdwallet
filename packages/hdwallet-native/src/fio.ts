@@ -63,9 +63,6 @@ export function MixinNativeFioWallet<TBase extends core.Constructor>(Base: TBase
       const account: string = msg.actions[0].account;
       const action: string = msg.actions[0].name;
       const data: core.Fio.FioTxActionData = msg.actions[0].data;
-      console.log("**ACCOUNT**", account);
-      console.log("**ACTION**", action);
-      console.log("**DATA**", data);
       if (!this.#fioSdk) {
         // Throw error. fioInitializeWallet has not been called.
       }
@@ -73,7 +70,6 @@ export function MixinNativeFioWallet<TBase extends core.Constructor>(Base: TBase
       if (!res.signatures || !res.packed_trx) {
         // Throw error. Transaction is invalid.
       }
-      console.log("**RES**", res);
       const sig = {
         serialized: res.packed_trx, // Serialized hexadecimal transaction
         signature: res.signatures[0], //
@@ -88,6 +84,8 @@ export function MixinNativeFioWallet<TBase extends core.Constructor>(Base: TBase
       const publicKeyRes = fio.FIOSDK.derivedPublicKey(this.#privateKey);
       this.#publicKey = publicKeyRes.publicKey;
       this.#fioSdk = new fio.FIOSDK(this.#privateKey, this.#publicKey, this.baseUrl, fetchJson);
+      //console.log("privKey", this.#privateKey);
+      //console.log("pubKey", this.#publicKey);
     }
   };
 }

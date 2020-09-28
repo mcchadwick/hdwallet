@@ -1284,7 +1284,7 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@fioprotocol/fiojs@1.0.1", "@fioprotocol/fiojs@^1.0.1":
+"@fioprotocol/fiojs@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@fioprotocol/fiojs/-/fiojs-1.0.1.tgz#81779437603741bc4ca1c76d119b64c4157a3874"
   integrity sha512-+rxJ/ynUkox/DO3ihHPpAc//DDI+DQvrphLqwRKufw0atC3GKluGR2qMTeO45O0UjorvOIw6esuuG7NpbVUm8Q==
@@ -1300,18 +1300,6 @@
     long "^4.0.0"
     randombytes "^2.1.0"
     text-encoding "0.7.0"
-
-"@fioprotocol/fiosdk@latest":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@fioprotocol/fiosdk/-/fiosdk-1.1.0.tgz#53078191bc728741c770d9b5ebe47997fd2c37f3"
-  integrity sha512-cHUlGZqOeLBPMHPlnvSObzJm7u0x9dx7afFOCUxhal0e3zHJrEbLw5vAKP/nmJ9nlf6HsvZKr1qJDeyik48CAg==
-  dependencies:
-    "@fioprotocol/fiojs" "1.0.1"
-    "@types/text-encoding" "0.0.35"
-    bip39 "^3.0.2"
-    hdkey "^1.1.1"
-    validate "^5.1.0"
-    wif "^2.0.6"
 
 "@iarna/toml@^2.2.0":
   version "2.2.5"
@@ -2284,14 +2272,15 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@mcchadwick/fiosdk@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@mcchadwick/fiosdk/-/fiosdk-1.1.4.tgz#38b566035c1f680f83f61dd0e3f5158c3f1dc9d6"
-  integrity sha512-rpGwszh6qUh80lZh1NcB5oK3tAcZf6DZ5OFHzQ6ePYNL0T9pV224uYR3Z8YHGZql3p9EcHJA3FLvyPWAREZDhQ==
+"@mcchadwick/fiosdk@^1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@mcchadwick/fiosdk/-/fiosdk-1.1.7.tgz#9378e8c42f228c5dc9cdb376d86ffb36ee61bddd"
+  integrity sha512-pOYzwJZfXc+3aykKfoHFGixxTdR91dZjqDw+qBhtGrLQDmEcxnWoILBdOmUqpYk5MpqRfflgA6bOzZgjPbjpqw==
   dependencies:
     "@fioprotocol/fiojs" "1.0.1"
     "@types/text-encoding" "0.0.35"
     bip39 "^3.0.2"
+    fast-text-encoding "^1.0.3"
     hdkey "^1.1.1"
     validate "^5.1.0"
     wif "^2.0.6"
@@ -6662,6 +6651,11 @@ fast-safe-stringify@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-safe-stringify/-/fast-safe-stringify-2.0.7.tgz#124aa885899261f68aedb42a7c080de9da608743"
   integrity sha512-Utm6CdzT+6xsDk2m8S6uL8VHxNwI6Jub+e9NYTcAms28T84pTa25GJQV9j0CY0N1rM8hK4x6grpF2BQf+2qwVA==
 
+fast-text-encoding@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/fast-text-encoding/-/fast-text-encoding-1.0.3.tgz#ec02ac8e01ab8a319af182dae2681213cfe9ce53"
+  integrity sha512-dtm4QZH9nZtcDt8qJiOH9fcQd1NAgi+K1O2DbE6GG1PPCK/BWfOH3idCTRQ4ImXRUOyopDEgDEnVEE7Y/2Wrig==
+
 fastparse@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/fastparse/-/fastparse-1.1.2.tgz#91728c5a5942eced8531283c79441ee4122c35a9"
@@ -6763,14 +6757,15 @@ find-versions@^3.2.0:
   dependencies:
     semver-regex "^2.0.0"
 
-fiosdk-offline@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/fiosdk-offline/-/fiosdk-offline-1.1.4.tgz#52de347a3b95319469f4038a23ed99d48b8b67d6"
-  integrity sha512-VuPybAgAkMtMTzOZtYHqoa/gwfkLXD1EK7Dh8o+nqJArhmdy/ag3pZG97s40M7CZH5bEs9DiE9nHmldEqRe5ug==
+fiosdk-offline@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/fiosdk-offline/-/fiosdk-offline-1.1.7.tgz#5469e07106e6aa28d4a32c117bf1bc2e1ceacfa6"
+  integrity sha512-H7EZhLNON7FT2Ia0irCVCmFr2UUdboqVcjr+2DnWvNreV8CMB9A1exZpxkJttn2OgA0W6VLS3Rmepsho7DV1xg==
   dependencies:
     "@fioprotocol/fiojs" "1.0.1"
     "@types/text-encoding" "0.0.35"
     bip39 "^3.0.2"
+    fast-text-encoding "^1.0.3"
     hdkey "^1.1.1"
     validate "^5.1.0"
     wif "^2.0.6"
@@ -13995,15 +13990,10 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3, whatwg-encoding@^1.0.5:
   dependencies:
     iconv-lite "0.4.24"
 
-whatwg-fetch@2.0.4:
+whatwg-fetch@2.0.4, whatwg-fetch@^2.0.4, whatwg-fetch@^3.0.0:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
   integrity sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==
-
-whatwg-fetch@^3.0.0:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.4.1.tgz#e5f871572d6879663fa5674c8f833f15a8425ab3"
-  integrity sha512-sofZVzE1wKwO+EYPbWfiwzaKovWiZXf4coEzjGP9b2GBVgQRLQUZ2QcuPpQExGDAW5GItpEm6Tl4OU5mywnAoQ==
 
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0, whatwg-mimetype@^2.3.0:
   version "2.3.0"

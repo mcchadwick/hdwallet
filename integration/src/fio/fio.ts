@@ -63,13 +63,9 @@ export function fioTests(get: () => { wallet: HDWallet; info: HDWalletInfo }): v
             },
           ],
         });
-        expect(res).toHaveProperty(
-          "signatures",
-          "SIG_K1_KZQX5nQDier8wtNRCQakgVRLVoZuRBFqGz8H7qxzDX2v2XJcaEVfa7xuZ9yX9CVqkpHaHVMBF4P2sp1GnZDYE15kJNK3aN"
-        );
-        expect(res).toHaveProperty("compression", 0);
-        expect(res).toHaveProperty("packed_context_free_data", "");
-        expect(res).toHaveProperty("packed_trx");
+        console.log(res);
+        expect(res).toHaveProperty("signature");
+        expect(res).toHaveProperty("serialized");
       },
       TIMEOUT
     );
