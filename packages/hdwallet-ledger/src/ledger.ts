@@ -287,6 +287,7 @@ export class LedgerHDWallet implements core.HDWallet, core.BTCWallet, core.ETHWa
   _supportsEosInfo: boolean = false;
   _supportsEos: boolean = false;
   _supportsFioInfo: boolean = false;
+  _supportsFio: boolean = false;
 
   _isLedger: boolean = true;
 

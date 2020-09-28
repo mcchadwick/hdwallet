@@ -602,6 +602,7 @@ export class KeepKeyHDWallet implements HDWallet, BTCWallet, ETHWallet, DebugLin
   _supportsRippleInfo: boolean = true;
   _supportsBinanceInfo: boolean = true;
   _supportsEosInfo: boolean = true;
+  _supportsFioInfo: boolean = false;
   _supportsDebugLink: boolean;
   _isKeepKey: boolean = true;
   _supportsETH: boolean = true;

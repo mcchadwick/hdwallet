@@ -10,6 +10,8 @@ import { RippleWallet, RippleWalletInfo } from "./ripple";
 
 import { EosWallet, EosWalletInfo } from "./eos";
 
+import { FioWallet, FioWalletInfo } from "./fio";
+
 import { DebugLinkWallet } from "./debuglink";
 import { Transport } from "./transport";
 import { isObject } from "lodash";
@@ -108,6 +110,7 @@ type CoinWallets =
   | BinanceWallet
   | RippleWallet
   | EosWallet
+  | FioWallet
   | DebugLinkWallet;
 
 export type Coin = string;
@@ -165,6 +168,15 @@ export function infoEos(info: any): info is EosWalletInfo {
   return isObject(info) && (info as any)._supportsEosInfo;
 }
 
+export function supportsFio(wallet: any): wallet is FioWallet {
+  return isObject(wallet) && (wallet as any)._supportsFio;
+}
+
+export function infoFio(info: any): info is FioWalletInfo {
+  return isObject(info) && (info as any)._supportsFioInfo;
+}
+
+
 /**
  * Type guard for RippleWallet Support
  *
@@ -202,6 +214,7 @@ export interface HDWalletInfo {
   _supportsRippleInfo: boolean;
   _supportsBinanceInfo: boolean;
   _supportsEosInfo: boolean;
+  _supportsFioInfo: boolean;
   /**
    * Retrieve the wallet's vendor string.
    */
@@ -249,6 +262,7 @@ export interface HDWallet extends HDWalletInfo {
   _supportsBinance: boolean;
   _supportsRipple: boolean;
   _supportsEos: boolean;
+  _supportsFio: boolean;
   _supportsDebugLink: boolean;
 
   transport?: Transport;
