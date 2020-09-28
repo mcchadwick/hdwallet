@@ -149,7 +149,7 @@ export class NativeHDWallet
     super.ethInitializeWallet("0x" + seed.toString("hex"));
     super.cosmosInitializeWallet(this.#mnemonic);
     await super.binanceInitializeWallet(this.#mnemonic);
-    super.fioInitializeWallet(this.#mnemonic);
+    await super.fioInitializeWallet(this.#mnemonic);
 
     this.#initialized = true;
   }
