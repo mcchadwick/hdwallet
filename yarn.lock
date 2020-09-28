@@ -6763,6 +6763,18 @@ find-versions@^3.2.0:
   dependencies:
     semver-regex "^2.0.0"
 
+fiosdk-offline@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/fiosdk-offline/-/fiosdk-offline-1.1.4.tgz#52de347a3b95319469f4038a23ed99d48b8b67d6"
+  integrity sha512-VuPybAgAkMtMTzOZtYHqoa/gwfkLXD1EK7Dh8o+nqJArhmdy/ag3pZG97s40M7CZH5bEs9DiE9nHmldEqRe5ug==
+  dependencies:
+    "@fioprotocol/fiojs" "1.0.1"
+    "@types/text-encoding" "0.0.35"
+    bip39 "^3.0.2"
+    hdkey "^1.1.1"
+    validate "^5.1.0"
+    wif "^2.0.6"
+
 flush-write-stream@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.1.1.tgz#8dd7d873a1babc207d94ead0c2e0e44276ebf2e8"
@@ -13983,10 +13995,15 @@ whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3, whatwg-encoding@^1.0.5:
   dependencies:
     iconv-lite "0.4.24"
 
-whatwg-fetch@2.0.4, whatwg-fetch@^2.0.4, whatwg-fetch@^3.0.0:
+whatwg-fetch@2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-2.0.4.tgz#dde6a5df315f9d39991aa17621853d720b85566f"
   integrity sha512-dcQ1GWpOD/eEQ97k66aiEVpNnapVj90/+R+SXTPYGHpYBBypfKJEQjLrvMZ7YXbKm21gXd4NcuxUTjiv1YtLng==
+
+whatwg-fetch@^3.0.0:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.4.1.tgz#e5f871572d6879663fa5674c8f833f15a8425ab3"
+  integrity sha512-sofZVzE1wKwO+EYPbWfiwzaKovWiZXf4coEzjGP9b2GBVgQRLQUZ2QcuPpQExGDAW5GItpEm6Tl4OU5mywnAoQ==
 
 whatwg-mimetype@^2.1.0, whatwg-mimetype@^2.2.0, whatwg-mimetype@^2.3.0:
   version "2.3.0"

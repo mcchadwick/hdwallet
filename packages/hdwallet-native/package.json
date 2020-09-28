@@ -17,7 +17,7 @@
     "@fioprotocol/fiojs": "^1.0.1",
     "@fioprotocol/fiosdk": "latest",
     "@mcchadwick/fiosdk": "^1.1.4",
-    "@mcchadwick/hdwallet-core": "^1.2.0",
+    "@mcchadwick/hdwallet-core": "^1.2.2",
     "bchaddrjs": "^0.4.9",
     "bip32": "^2.0.5",
     "bip39": "^3.0.2",
@@ -27,6 +27,7 @@
     "crypto-js": "^3.1.9-1",
     "ethereum-tx-decoder": "^3.0.0",
     "ethers": "^5.0.2",
+    "fiosdk-offline": "^1.1.4",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.1"
   },
