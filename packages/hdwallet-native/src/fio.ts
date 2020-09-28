@@ -47,35 +47,43 @@ export function MixinNativeFioWallet<TBase extends core.Constructor>(Base: TBase
     #publicKey = "";
     #fioSdk;
 
-    fioInitializeWallet(seed: string): void {
+    async fioInitializeWallet(seed: string): Promise<string> {
       this.#seed = seed;
+      return await this.fioSDKInit(seed);
     }
 
     async fioGetAddress(msg: core.FioGetAddress): Promise<string> {
       const path = core.addressNListToBIP32(msg.addressNList);
-      this.#privateKey = fio.FIOSDK.createPrivateKeyMnemonic(this.#seed, path).fioKey;
-      this.#publicKey = fio.FIOSDK.derivedPublicKey(this.#privateKey);
-      this.#fioSdk = new fio.FIOSDK(this.#privateKey, this.#publicKey, this.baseUrl, fetchJson);
+      await this.fioSDKInit(this.#seed, path);
       return this.#publicKey;
     }
 
-    async fioSignTx(msg: core.FioTx): Promise<any> {
-      const account: string = msg.actions.account || "fio.token";
-      const action: string = msg.actions.name || "fiotrnspubky";
-      const data: core.FioTxActionData = msg.actions.data;
+    async fioSignTx(msg: core.FioSignTx): Promise<core.FioSignedTx> {
+      const account: string = msg.actions[0].account || "fio.token";
+      const action: string = msg.actions[0].name || "fiotrnspubky";
+      const data: core.Fio.FioTxActionData = msg.actions[0].data;
       if (!this.#fioSdk) {
         // Throw error. fioInitializeWallet has not been called.
       }
-      const res = this.#fioSdk.prepareTransaction(account, action, data);
+      const res = this.#fioSdk.prepareTransaction(account, action, msg.actions[0].data);
       if (!res.signatures || !res.packed_trx) {
         // Throw error. Transaction is invalid.
       }
-      let sig = {
+      const sig = {
         serialized: res.packed_trx, // Serialized hexadecimal transaction
         signature: res.signatures[0], //
       };
 
       return sig;
+    }
+
+    async fioSDKInit(seed: string, path?: string): Promise<string>{
+      const privateKeyRes = await fio.FIOSDK.createPrivateKeyMnemonic(seed, path);
+      return privateKeyRes;
+      this.#privateKey = privateKeyRes.fioKey;
+      const publicKeyRes = fio.FIOSDK.derivedPublicKey(this.#privateKey);
+      this.#publicKey = publicKeyRes.publicKey;
+      this.#fioSdk = new fio.FIOSDK(this.#privateKey, this.#publicKey, this.baseUrl, fetchJson);
     }
   };
 }
