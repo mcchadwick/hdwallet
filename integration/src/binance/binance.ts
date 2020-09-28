@@ -57,7 +57,7 @@ export function binanceTests(get: () => { wallet: HDWallet; info: HDWalletInfo }
       TIMEOUT
     );
 
-    test(
+    test.skip(
       "binanceSignTx()",
       async () => {
         if (!wallet) return;
