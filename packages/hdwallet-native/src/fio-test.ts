@@ -1,8 +1,8 @@
-const fio = require("@mcchadwick/fiosdk");
+const fio = require("@shapeshiftoss/fiosdk");
 
-import { bip32ToAddressNList, addressNListToBIP32 } from "@mcchadwick/hdwallet-core";
+import { bip32ToAddressNList, addressNListToBIP32 } from "@shapeshiftoss/hdwallet-core";
 
-import { HDWalletInfo } from "@mcchadwick/hdwallet-core/src/wallet";
+import { HDWalletInfo } from "@shapeshiftoss/hdwallet-core/src/wallet";
 
 const { FioJS, Ecc } = require("@fioprotocol/fiojs");
 const fetchlib = require("node-fetch");
@@ -68,4 +68,4 @@ async function fioInitialize(mnemonic: string): Promise<any> {
 
 //console.log(fioGetAddress(mnemonic))
 //fioPrepareTransaction();
-fioInitialize(mnemonic)
+fioInitialize(mnemonic);

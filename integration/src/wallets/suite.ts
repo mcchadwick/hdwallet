@@ -1,4 +1,4 @@
-import { HDWallet, HDWalletInfo } from "@mcchadwick/hdwallet-core";
+import { HDWallet, HDWalletInfo } from "@shapeshiftoss/hdwallet-core";
 
 export type InfoCreater = () => HDWalletInfo;
 export type Creater = (type?: any) => Promise<HDWallet>;

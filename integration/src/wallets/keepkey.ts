@@ -11,10 +11,10 @@ import {
   ActionCancelled,
   HDWalletInfo,
   BTCInputScriptType,
-} from "@mcchadwick/hdwallet-core";
-import { KeepKeyHDWallet, KeepKeyHDWalletInfo, isKeepKey, info } from "@mcchadwick/hdwallet-keepkey";
-import { NodeWebUSBKeepKeyAdapter } from "@mcchadwick/hdwallet-keepkey-nodewebusb";
-import { TCPKeepKeyAdapter } from "@mcchadwick/hdwallet-keepkey-tcp";
+} from "@shapeshiftoss/hdwallet-core";
+import { KeepKeyHDWallet, KeepKeyHDWalletInfo, isKeepKey, info } from "@shapeshiftoss/hdwallet-keepkey";
+import { NodeWebUSBKeepKeyAdapter } from "@shapeshiftoss/hdwallet-keepkey-nodewebusb";
+import { TCPKeepKeyAdapter } from "@shapeshiftoss/hdwallet-keepkey-tcp";
 import * as debug from "debug";
 
 const log = debug.default("keepkey");

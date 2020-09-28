@@ -2272,9 +2272,9 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@mcchadwick/fiosdk@^1.1.7":
+"@shapeshiftoss/fiosdk@^1.1.7":
   version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@mcchadwick/fiosdk/-/fiosdk-1.1.7.tgz#9378e8c42f228c5dc9cdb376d86ffb36ee61bddd"
+  resolved "https://registry.yarnpkg.com/@shapeshiftoss/fiosdk/-/fiosdk-1.1.7.tgz#9378e8c42f228c5dc9cdb376d86ffb36ee61bddd"
   integrity sha512-pOYzwJZfXc+3aykKfoHFGixxTdR91dZjqDw+qBhtGrLQDmEcxnWoILBdOmUqpYk5MpqRfflgA6bOzZgjPbjpqw==
   dependencies:
     "@fioprotocol/fiojs" "1.0.1"

@@ -1,5 +1,5 @@
 {
-  "name": "@mcchadwick/hdwallet-native",
+  "name": "@shapeshiftoss/hdwallet-native",
   "version": "1.2.0",
   "license": "MIT",
   "publishConfig": {
@@ -14,8 +14,8 @@
     "prepublishOnly": "yarn clean && yarn build"
   },
   "dependencies": {
-    "@mcchadwick/fiosdk": "^1.1.7",
-    "@mcchadwick/hdwallet-core": "^1.2.2",
+    "@shapeshiftoss/fiosdk": "^1.1.7",
+    "@shapeshiftoss/hdwallet-core": "^1.2.2",
     "bchaddrjs": "^0.4.9",
     "bip32": "^2.0.5",
     "bip39": "^3.0.2",

@@ -1,5 +1,5 @@
 {
-  "name": "@mcchadwick/hdwallet",
+  "name": "@shapeshiftoss/hdwallet",
   "version": "1.0.2",
   "main": "index.js",
   "private": true,
@@ -28,7 +28,7 @@
     "yarn": "yarn",
     "build": "yarn tsc --build",
     "dev:all": "yarn tsc --build --watch",
-    "now-build": "lerna run build --scope @mcchadwick/hdwallet-core && lerna run build --scope hdwallet-sandbox --ignore @mcchadwick/hdwallet-keepkey-nodehid --include-filtered-dependencies && mv examples/sandbox/public .",
+    "now-build": "lerna run build --scope @shapeshiftoss/hdwallet-core && lerna run build --scope hdwallet-sandbox --ignore @shapeshiftoss/hdwallet-keepkey-nodehid --include-filtered-dependencies && mv examples/sandbox/public .",
     "docker:run:emulator": "docker run -p 5000:5000 kktech/kkemu:latest",
     "docker:stop:run:emulator": "docker stop $(docker ps -a -q --filter ancestor=kktech/kkemu:latest --format=\"{{.ID}}\") && docker run -p 5000:5000 kktech/kkemu:latest",
     "test": "yarn run jest --verbose --config jest.config.js",

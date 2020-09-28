@@ -1,4 +1,4 @@
-import * as core from "@mcchadwick/hdwallet-core";
+import * as core from "@shapeshiftoss/hdwallet-core";
 import * as fio from "fiosdk-offline";
 //const fio = require("fiosdk-offline");
 const fetch = require("node-fetch");

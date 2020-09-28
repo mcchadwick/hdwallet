@@ -1,8 +1,8 @@
-import { bip32ToAddressNList, HDWallet, FioWallet, supportsFio } from "@mcchadwick/hdwallet-core";
+import { bip32ToAddressNList, HDWallet, FioWallet, supportsFio } from "@shapeshiftoss/hdwallet-core";
 
-import { HDWalletInfo } from "@mcchadwick/hdwallet-core/src/wallet";
+import { HDWalletInfo } from "@shapeshiftoss/hdwallet-core/src/wallet";
 
-import { toHexString } from "@mcchadwick/hdwallet-core";
+import { toHexString } from "@shapeshiftoss/hdwallet-core";
 
 import * as tx01_unsigned from "./tx01.unsigned.json";
 import * as tx02_unsigned from "./tx02.unsigned.json";

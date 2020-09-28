@@ -1,4 +1,4 @@
-import * as core from "@mcchadwick/hdwallet-core";
+import * as core from "@shapeshiftoss/hdwallet-core";
 import { create } from "./native";
 
 type NativeAdapterArgs = {
@@ -40,10 +40,7 @@ export class NativeAdapter {
 
     const wallet = this.keyring.get(this.deviceId);
 
-    this.keyring.emit(
-      [wallet.getVendor(), this.deviceId, core.Events.CONNECT],
-      this.deviceId
-    );
+    this.keyring.emit([wallet.getVendor(), this.deviceId, core.Events.CONNECT], this.deviceId);
 
     return wallet;
   }
